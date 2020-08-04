@@ -13,7 +13,7 @@ export class SelectionSort extends Component {
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters} = this.props
 
-        updateParameters(false, true); // skip = false, currentlySorting = true
+        updateParameters(false, 'selection'); // skip = false, currentlySorting = true
 
         for(let i = 0; i < arr.length; i++)
         {
@@ -63,7 +63,8 @@ export class SelectionSort extends Component {
     render() {
 
         return (
-            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}>Selection Sort</button>
+            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}
+            className={this.props.currentlySorting === 'selection' ? 'btn btn-success' : 'btn btn-secondary'}>Selection Sort</button>
         )
     }
 

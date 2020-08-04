@@ -4,4 +4,8 @@
 
 input[type="range"] {
     width:200px;
-  }
+}
+
+body {
+    background-color: rgb(66, 65, 82) !important;
+}

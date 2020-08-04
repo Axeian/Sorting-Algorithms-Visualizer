@@ -17,7 +17,7 @@ export class App extends Component {
 
     let arr = []
     for(let i = 0; i < n; i++)
-        arr.push(Math.floor(Math.random() * 55) + 1)
+        arr.push(Math.floor(Math.random() * 99) + 1)
     
     return arr
   }
@@ -80,9 +80,10 @@ export class App extends Component {
 
           <div className="App container vh-100">
 
-              <div style={toolbarStyle} className="btn-toolbar container" role="toolbar">
+              <div style={toolbarStyle} className="btn-toolbar container " role="toolbar">
                   <div className="btn-group mr-2" role="group">
-                        <button onClick={() => {this.setState({arr: this.randomizeArray(this.state.arr.length)})}} disabled={this.state.currentlySorting}>
+                        <button onClick={() => {this.setState({arr: this.randomizeArray(this.state.arr.length)})}} disabled={this.state.currentlySorting}
+                        className='btn btn-info'>
                           Randomize Array</button>
                   </div>
 
@@ -174,13 +175,15 @@ export class App extends Component {
                     />  
               </div>
 
-              <div className="container settings row" style={settingStyle}>
+              <div className="container settings d-flex" style={settingStyle}>
                         
-                    <button onClick={() => this.updateParameters(true, false)} disabled={!this.state.currentlySorting}>Skip Forward</button>
+                    <button onClick={() => this.updateParameters(true, false)} disabled={!this.state.currentlySorting} 
+                    className='btn btn-success'>Skip Forward</button>
 
                     <div className="m-auto">
                           <label>Speed</label>
-                          <input type="range" name="speed" max="1000" min="0" onChange={this.updateDelay} style={reversedRangeStyle} value={this.state.delay}></input>
+                          <input type="range" name="speed" max="1000" min="0" onChange={this.updateDelay} style={reversedRangeStyle} value={this.state.delay}
+                          ></input>
                     </div>
 
                     <div>
@@ -204,14 +207,19 @@ const reversedRangeStyle = {
 }
 
 const settingStyle = {
-  backgroundColor: '#D3D3D3',
+  backgroundColor: 'grey',
   position: 'absolute',
   bottom: '0',
   left: '0',
+  borderRadius: '3px',
+  padding: '3px',
+  color: 'white'
 }
 
 const toolbarStyle = {
-  backgroundColor: '#D3D3D3'
+  backgroundColor: 'grey',
+  borderRadius: '3px',
+  padding: '3px'
 }
 
 

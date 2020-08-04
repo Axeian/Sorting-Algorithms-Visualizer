@@ -29,7 +29,7 @@ export class Bars extends Component {
                 return '#32CD32'
         }
         else if(index < leftSorted || index > rightSorted || sortedIndices.includes(index))
-            return 'purple'
+            return 'white'
         else if(index === idx1)
             return '#DDA0DD'
         else if(index === idx2)
@@ -43,7 +43,7 @@ export class Bars extends Component {
         let width = 360/this.props.arr.length;
 
         return({
-            height: `${11 * num}px`,
+            height: `${5 * num}px`,
             backgroundColor: this.getColor(index),
             margin: '2px',
             width: `${width}px`, // 16px default
@@ -68,8 +68,10 @@ export class Bars extends Component {
                     <div>
                         <div style={{
                                         textAlign: 'center',
-                                        fontSize: `${width/3}px`
-                                        
+                                        fontSize: `${width/3}px`,
+                                        border: '1px solid white',
+                                        fontWeight: 'bold',
+                                        color: 'white'
                                     }}>{num}</div>
                         <div key={index} style={{...this.getStyle(num, index), ...this.extraStyle(index)}}>
                                 

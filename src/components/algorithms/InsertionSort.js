@@ -10,7 +10,7 @@ export class InsertionSort extends Component {
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters} = this.props
 
-        updateParameters(false, true); // skip = false, currentlySorting = true
+        updateParameters(false, 'insertion'); // skip = false, currentlySorting = true
 
         for(let i = 1; i < arr.length; i++)
         {
@@ -65,7 +65,8 @@ export class InsertionSort extends Component {
     render() {
 
         return (
-            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}>Insertion Sort</button>
+            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}
+            className={this.props.currentlySorting === 'insertion' ? 'btn btn-success' : 'btn btn-secondary'}>Insertion Sort</button>
         )
     }
 

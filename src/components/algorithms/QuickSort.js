@@ -82,7 +82,7 @@ export class QuickSort extends Component {
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters, updateSortedIndices, updateBorderedIndices} = this.props
 
-        updateParameters(false, true); // skip = false, currentlySorting = true
+        updateParameters(false, 'quick'); // skip = false, currentlySorting = true
 
         console.log(this.props.skip)
 
@@ -103,7 +103,8 @@ export class QuickSort extends Component {
     render() {
 
         return (
-            <button onClick={this.sort.bind(this)}  disabled={this.props.currentlySorting}>Quick Sort</button>
+            <button onClick={this.sort.bind(this)}  disabled={this.props.currentlySorting}
+            className={this.props.currentlySorting === 'quick' ? 'btn btn-success' : 'btn btn-secondary'}>Quick Sort</button>
         )
     }
 

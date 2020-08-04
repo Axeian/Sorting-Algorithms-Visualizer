@@ -117,7 +117,7 @@ export class MergeSort extends Component {
 
         let {arr, updateArr, updateParameters, updateHighlightedIndices, updateSwapIndices, updateBorderedIndices} = this.props
 
-        updateParameters(false, true); // skip = false, currentlySorting = true
+        updateParameters(false, 'merge'); // skip = false, currentlySorting = true
 
         await this.mergeSort(arr, 0, arr.length - 1)
         //updateArr(arr)
@@ -136,7 +136,8 @@ export class MergeSort extends Component {
     render() {
 
         return (
-            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}>Merge Sort</button>
+            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}
+            className={this.props.currentlySorting === 'merge' ? 'btn btn-success' : 'btn btn-secondary'}>Merge Sort</button>
         )
     }
 

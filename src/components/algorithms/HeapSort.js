@@ -92,7 +92,7 @@ export class HeapSort extends Component {
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters} = this.props
 
-        updateParameters(false, true); // skip = false, currentlySorting = true
+        updateParameters(false, 'heap'); // skip = false, currentlySorting = true
 
         this.state.heapSize = arr.length
         
@@ -141,7 +141,8 @@ export class HeapSort extends Component {
     render() {
 
         return (
-            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}>Heap Sort</button>
+            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}
+            className={this.props.currentlySorting === 'heap' ? 'btn btn-success' : 'btn btn-secondary'}>Heap Sort</button>
         )
     }
 

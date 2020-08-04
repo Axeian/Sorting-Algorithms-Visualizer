@@ -12,7 +12,7 @@ export class BubbleSort extends Component {
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters} = this.props;
 
-        updateParameters(false, true); // skip = false, currentlySorting = true
+        updateParameters(false, 'bubble'); // skip = false, currentlySorting = true
 
         let i, j;
 
@@ -58,7 +58,9 @@ export class BubbleSort extends Component {
     render() {
 
         return (
-            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}>Bubble Sort</button>
+            <button onClick={this.sort.bind(this)} disabled={this.props.currentlySorting}
+            className={this.props.currentlySorting === 'bubble' ? 'btn btn-success' : 'btn btn-secondary'}
+            >Bubble Sort</button>
         )
     }
 
