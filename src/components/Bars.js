@@ -40,10 +40,11 @@ export class Bars extends Component {
 
     getStyle = (num, index) => {
 
-        let width = 360/this.props.arr.length;
+        
+        let width = window.innerWidth/(4*this.props.arr.length);
 
         return({
-            height: `${5 * num}px`,
+            height: `${(window.innerHeight/712)*5 * num}px`,
             backgroundColor: this.getColor(index),
             margin: '2px',
             width: `${width}px`, // 16px default

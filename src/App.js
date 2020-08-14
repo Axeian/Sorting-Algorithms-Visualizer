@@ -11,7 +11,7 @@ import QuickSort from './components/algorithms/QuickSort'
 export class App extends Component {
 
   
-  randomizeArray = (n = 180) => {
+  randomizeArray = (n = Math.floor(window.innerWidth / 10)) => {
 
     this.setState({idx1: -1, idx2: -1, leftSorted: -1, rightSorted: 1000, swapIdx1: -1, swapIdx2: -1, swapStage: '', skip: false, borderedIndices: []})
 
@@ -76,18 +76,21 @@ export class App extends Component {
 
   render() {
 
+    let btnSize = (window.innerWidth > 600) ? "md" : "sm"
+    
+
     return (
 
           <div className="App container vh-100">
 
-              <div style={toolbarStyle} className="btn-toolbar container " role="toolbar">
-                  <div className="btn-group mr-2" role="group">
+              <div id="toolbar" style={toolbarStyle} className="btn-toolbar container" role="toolbar">
+                  <div className={"btn-group mr-2 btn-group-"+ btnSize} role="group">
                         <button onClick={() => {this.setState({arr: this.randomizeArray(this.state.arr.length)})}} disabled={this.state.currentlySorting}
                         className='btn btn-info'>
                           Randomize Array</button>
                   </div>
 
-                  <div className="btn-group m-auto" role="group">
+                  <div className={"btn-group m-auto d-flex flex-wrap btn-group-" + btnSize} role="group">
                         <SelectionSort
                             arr={this.state.arr} 
                             updateArr={this.updateArr}
@@ -175,10 +178,10 @@ export class App extends Component {
                     />  
               </div>
 
-              <div className="container settings d-flex" style={settingStyle}>
+              <footer id="settings" className="container page-footer settings d-flex flex-wrap" style={settingStyle}>
                         
                     <button onClick={() => this.updateParameters(true, false)} disabled={!this.state.currentlySorting} 
-                    className='btn btn-success'>Skip Forward</button>
+                    className={'btn btn-success btn-'+btnSize }>Skip Forward</button>
 
                     <div className="m-auto">
                           <label>Speed</label>
@@ -188,11 +191,11 @@ export class App extends Component {
 
                     <div className="m-auto">
                           <label>Array Size</label>
-                          <input type="range" name="array-size" max="180" min="5" onChange={this.updateArraySize} value={this.state.arr.size} disabled={this.state.currentlySorting}></input>
+                          <input type="range" name="array-size" max={Math.floor(window.innerWidth/10)} min="5" onChange={this.updateArraySize} value={this.state.arr.size} disabled={this.state.currentlySorting}></input>
                     </div>
                     
 
-              </div>
+              </footer>
 
               </div>
 
