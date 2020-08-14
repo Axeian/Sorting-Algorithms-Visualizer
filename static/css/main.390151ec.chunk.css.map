@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,KACI,iBACJ,CAEA,kBACI,WACJ,CAEA,KACI,kCACJ","file":"main.390151ec.chunk.css","sourcesContent":[".App {\r\n    position: relative;\r\n}\r\n\r\ninput[type=\"range\"] {\r\n    width:200px;\r\n}\r\n\r\nbody {\r\n    background-color: rgb(66, 65, 82) !important;\r\n}\r\n"]}
