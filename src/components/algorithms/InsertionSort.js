@@ -45,8 +45,12 @@ export class InsertionSort extends Component {
 
             if(!this.props.skip)
             {
-                updateSwapIndices(pos, pos - 1, 'after');
-                await this.sleep(this.props.delay);
+                if(pos !== 0)
+                {
+                    updateSwapIndices(pos, pos - 1, 'after');
+                    await this.sleep(this.props.delay);
+                }
+                updateSwapIndices(-1, -1);
                 updateHighlightedIndices(-1, -1, i + 1, 1000);
                 await this.sleep(this.props.delay);
             }

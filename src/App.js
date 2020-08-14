@@ -186,7 +186,7 @@ export class App extends Component {
                           ></input>
                     </div>
 
-                    <div>
+                    <div className="m-auto">
                           <label>Array Size</label>
                           <input type="range" name="array-size" max="180" min="5" onChange={this.updateArraySize} value={this.state.arr.size} disabled={this.state.currentlySorting}></input>
                     </div>
