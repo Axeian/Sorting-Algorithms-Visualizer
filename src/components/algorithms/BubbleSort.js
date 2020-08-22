@@ -5,9 +5,6 @@ import PropTypes from 'prop-types'
 
 export class BubbleSort extends Component {
 
-
-    sleep = delay => new Promise(resolve => setTimeout(resolve, delay))
-
     sort = async () => {    
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters} = this.props;
@@ -25,7 +22,7 @@ export class BubbleSort extends Component {
                     updateHighlightedIndices(-1, -1, -1, i);  
                     // updateHighlightedIndices has arguemnts: (idx1, idx2, leftSorted, rightSorted)
                     updateSwapIndices(j, j + 1, 'before');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }
                 
                 if(arr[j] > arr[j + 1])
@@ -37,7 +34,7 @@ export class BubbleSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(j, j + 1, 'after') ;
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }
                 
             }
@@ -48,7 +45,7 @@ export class BubbleSort extends Component {
         updateHighlightedIndices(-1, -1, -1, -1);
         updateSwapIndices(-1, -1);
         updateParameters(false, false);
-        await this.sleep(500, false)
+        await this.props.sleep(500)
         updateHighlightedIndices(-1, -1, -1, 1000);
 
         return Promise.resolve();

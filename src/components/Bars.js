@@ -66,7 +66,7 @@ export class Bars extends Component {
             <div className="d-flex justify-content-center">
                 {arr.map( (num, index) => (
 
-                    <div>
+                    <div  key={index}>
                         <div style={{
                                         textAlign: 'center',
                                         fontSize: `${width/3}px`,
@@ -74,7 +74,7 @@ export class Bars extends Component {
                                         fontWeight: 'bold',
                                         color: 'white'
                                     }}>{num}</div>
-                        <div key={index} style={{...this.getStyle(num, index), ...this.extraStyle(index)}}>
+                        <div style={{...this.getStyle(num, index), ...this.extraStyle(index)}}>
                                 
                         </div>
                     </div>

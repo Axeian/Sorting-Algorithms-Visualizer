@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 
 export class QuickSort extends Component {
 
-
-    sleep = delay => new Promise(resolve => setTimeout(resolve, delay))
-
     partition = async (arr, low, high) => {
 
         let {updateArr, updateHighlightedIndices, updateSwapIndices, updateBorderedIndices, updateSortedIndices, sortedIndices} = this.props
@@ -19,7 +16,7 @@ export class QuickSort extends Component {
                 let borderedIndices = Array.from({length: j - (low + 1) + 1}, (x, i) => i + low + 1)
                 updateHighlightedIndices(low, i, -1, 1000);
                 updateBorderedIndices(borderedIndices);
-                await this.sleep(this.props.delay);
+                await this.props.sleep(this.props.delay);
             }
 
             if(arr[i] <= pivot)
@@ -27,7 +24,7 @@ export class QuickSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(i, j + 1, 'before');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }
 
                 ++j;
@@ -36,9 +33,9 @@ export class QuickSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(i, j, 'after');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                     updateSwapIndices(-1, -1, '');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }   
 
                 //updateArr(arr);
@@ -48,7 +45,7 @@ export class QuickSort extends Component {
         if(!this.props.skip)
         {
             updateSwapIndices(low, j, 'before');
-            await this.sleep(2*this.props.delay);
+            await this.props.sleep(2*this.props.delay);
         }
 
         [arr[low], arr[j]] = [arr[j], arr[low]];
@@ -57,7 +54,7 @@ export class QuickSort extends Component {
         if(!this.props.skip)
         {
             updateSwapIndices(low, j, 'after');
-            await this.sleep(2*this.props.delay);
+            await this.props.sleep(2*this.props.delay);
             updateSwapIndices(-1, -1, '');
             updateSortedIndices([...sortedIndices, j]);
         }
@@ -93,7 +90,7 @@ export class QuickSort extends Component {
         updateParameters(false, false);
         updateBorderedIndices([]);
         updateHighlightedIndices(-1, -1, arr.length, 1000);
-        await this.sleep(500, false)
+        await this.props.sleep(500)
         updateHighlightedIndices(-1, -1, -1, 1000);
         updateSortedIndices([]);
         

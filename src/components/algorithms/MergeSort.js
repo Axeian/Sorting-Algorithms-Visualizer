@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 
 export class MergeSort extends Component {
 
-
-    sleep = delay => new Promise(resolve => setTimeout(resolve, delay))
-
     merge = async (arr, beg, mid, end) => {
 
         let {updateArr, updateHighlightedIndices, updateSwapIndices, updateBorderedIndices} = this.props
@@ -13,9 +10,9 @@ export class MergeSort extends Component {
         if(!this.props.skip)
         {
             let borderedIndices = Array.from({length: end-beg+1}, (x, i) => i + beg)
-            await this.sleep(this.props.delay)
+            await this.props.sleep(this.props.delay)
             updateBorderedIndices(borderedIndices)
-            await this.sleep(this.props.delay)
+            await this.props.sleep(this.props.delay)
         }
 
 
@@ -30,7 +27,7 @@ export class MergeSort extends Component {
             if(!this.props.skip)
             {
                 updateHighlightedIndices(ptr1, ptr2, (flag) ? ptr1 : -1, 1000)
-                await this.sleep(this.props.delay)              
+                await this.props.sleep(this.props.delay)              
             }
 
 
@@ -39,7 +36,7 @@ export class MergeSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(ptr1, ptr2, 'before')
-                    await this.sleep(this.props.delay)
+                    await this.props.sleep(this.props.delay)
                 }
 
                 let temp = arr[ptr2]
@@ -53,7 +50,7 @@ export class MergeSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(ptr1, ptr1 + 1, 'after')
-                    await this.sleep(this.props.delay)
+                    await this.props.sleep(this.props.delay)
                     updateSwapIndices(-1, -1, '')                    
                 }
 
@@ -83,7 +80,7 @@ export class MergeSort extends Component {
             if(!this.props.skip)
             {
                 updateSwapIndices(beg,end, 'before')
-                await this.sleep(this.props.delay)
+                await this.props.sleep(this.props.delay)
             }
 
             if(arr[beg] > arr[end])
@@ -95,7 +92,7 @@ export class MergeSort extends Component {
             if(!this.props.skip)
             {
                 updateSwapIndices(beg,end, 'after')
-                await this.sleep(this.props.delay)
+                await this.props.sleep(this.props.delay)
                 updateSwapIndices(-1,-1, '')
             }
 
@@ -127,7 +124,7 @@ export class MergeSort extends Component {
         updateParameters(false, false);
         updateBorderedIndices([]);
         updateHighlightedIndices(-1, -1, arr.length, 1000);
-        await this.sleep(500, false)
+        await this.props.sleep(500)
         updateHighlightedIndices(-1, -1, -1, 1000);
         
 

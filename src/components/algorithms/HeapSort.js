@@ -7,9 +7,6 @@ export class HeapSort extends Component {
         heapSize: this.props.arr.length
     }
 
-
-    sleep = delay => new Promise(resolve => setTimeout(resolve, delay))
-
     parent = (i) => {
         return (i === 0) ? 0 : Math.floor((i - 1)/2)
     }
@@ -39,7 +36,7 @@ export class HeapSort extends Component {
             if(!this.props.skip)
             {
                 updateSwapIndices(greaterChild, i, 'before');
-                await this.sleep(this.props.delay);               
+                await this.props.sleep(this.props.delay);
             }
 
             if(arr[greaterChild] > arr[i])
@@ -50,7 +47,7 @@ export class HeapSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(greaterChild, i, 'after');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                     updateSwapIndices(-1, -1, '');
                 }
                 
@@ -62,7 +59,7 @@ export class HeapSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(greaterChild, i, 'after');
-                    await this.sleep(this.props.delay); 
+                    await this.props.sleep(this.props.delay);
                     updateSwapIndices(-1, -1, '');                 
                 }
                 
@@ -103,7 +100,7 @@ export class HeapSort extends Component {
             if(!this.props.skip)
             {
                 updateHighlightedIndices(0, this.state.heapSize - 1, -1, this.state.heapSize - 1)
-                await this.sleep(this.props.delay);                
+                await this.props.sleep(this.props.delay);
             }
 
 
@@ -113,7 +110,7 @@ export class HeapSort extends Component {
             if(!this.props.skip)
             {
                 updateHighlightedIndices(this.state.heapSize - 1, 0, -1, this.state.heapSize - 1)
-                await this.sleep(this.props.delay);
+                await this.props.sleep(this.props.delay);
             }
 
             this.setState(prevState => ({heapSize : prevState.heapSize - 1}))
@@ -121,7 +118,7 @@ export class HeapSort extends Component {
             if(!this.props.skip)
             {
                 updateHighlightedIndices(-1, -1, -1, this.state.heapSize - 1)
-                await this.sleep(this.props.delay);                
+                await this.props.sleep(this.props.delay);
             }
 
             await this.siftDown(arr, 0, this.state.heapSize)
@@ -132,7 +129,7 @@ export class HeapSort extends Component {
         updateSwapIndices(-1, -1, '');
         updateParameters(false, false);
         updateHighlightedIndices(-1, -1, -1, -1);
-        await this.sleep(500, false)
+        await this.props.sleep(500);
         updateHighlightedIndices(-1, -1, -1, 1000);
         
 

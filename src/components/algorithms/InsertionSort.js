@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 
 export class InsertionSort extends Component {
 
-
-    sleep = delay => new Promise(resolve => setTimeout(resolve, delay))
-
     sort = async () => {    
 
         let {arr, updateArr, updateHighlightedIndices, updateSwapIndices, updateParameters} = this.props
@@ -19,7 +16,7 @@ export class InsertionSort extends Component {
             if(!this.props.skip)
             {   
                 updateSwapIndices(pos, pos - 1, 'before')
-                await this.sleep(this.props.delay)
+                await this.props.sleep(this.props.delay)
             }
             
 
@@ -28,7 +25,7 @@ export class InsertionSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(pos, pos - 1, 'before');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }
                 
                 [arr[pos], arr[pos - 1]] = [arr[pos - 1], arr[pos]];
@@ -37,7 +34,7 @@ export class InsertionSort extends Component {
                 if(!this.props.skip)
                 {
                     updateSwapIndices(pos, pos - 1, 'after');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }
                 
                 --pos;
@@ -48,11 +45,11 @@ export class InsertionSort extends Component {
                 if(pos !== 0)
                 {
                     updateSwapIndices(pos, pos - 1, 'after');
-                    await this.sleep(this.props.delay);
+                    await this.props.sleep(this.props.delay);
                 }
                 updateSwapIndices(-1, -1);
                 updateHighlightedIndices(-1, -1, i + 1, 1000);
-                await this.sleep(this.props.delay);
+                await this.props.sleep(this.props.delay);
             }
             
         }
@@ -61,7 +58,7 @@ export class InsertionSort extends Component {
         updateSwapIndices(-1, -1);
         updateParameters(false, false);
         updateHighlightedIndices(-1, -1, arr.length, 1000);
-        await this.sleep(500);
+        await this.props.sleep(500);
         updateHighlightedIndices(-1, -1, -1, 1000);
 
     }

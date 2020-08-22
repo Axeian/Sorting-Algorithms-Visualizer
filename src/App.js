@@ -37,7 +37,8 @@ export class App extends Component {
       delay: 300,
       borderedIndices: [],
       sortedIndices: [],
-      currentlySorting: false
+      currentlySorting: false,
+      paused: false
     }
   }
 
@@ -73,10 +74,25 @@ export class App extends Component {
     this.setState({arr: this.randomizeArray(e.target.value)})
   }
 
+  sleep = async delay => {
+      return new Promise(resolve => {setTimeout(async () => {
+        if(!this.state.paused)
+            resolve();
+        else
+            await this.sleep(100);
+        resolve();
+      }, delay)})
+  }
+
+  pause = async () => {
+    this.setState({paused: !this.state.paused});
+  }
 
   render() {
 
-    let btnSize = (window.innerWidth > 600) ? "md" : "sm"
+    let btnSize = (window.innerWidth > 600) ? "md" : "sm";
+    let pauseColor = this.state.paused ? "btn btn-info" : "btn btn-danger";
+    let icon = this.state.paused ? "fas fa-play" : "fas fa-pause"
     
 
     return (
@@ -100,6 +116,7 @@ export class App extends Component {
                             delay={this.state.delay}
                             updateParameters={this.updateParameters}
                             currentlySorting={this.state.currentlySorting}
+                            sleep={this.sleep}
                         />
 
                         <BubbleSort
@@ -111,6 +128,7 @@ export class App extends Component {
                             delay={this.state.delay}
                             updateParameters={this.updateParameters}
                             currentlySorting={this.state.currentlySorting}
+                            sleep={this.sleep}
                         />
 
                         <InsertionSort
@@ -122,6 +140,7 @@ export class App extends Component {
                             delay={this.state.delay}
                             updateParameters={this.updateParameters}
                             currentlySorting={this.state.currentlySorting}
+                            sleep={this.sleep}
                         />
 
                         <MergeSort
@@ -134,6 +153,7 @@ export class App extends Component {
                             updateParameters={this.updateParameters}
                             updateBorderedIndices={this.updateBorderedIndices}
                             currentlySorting={this.state.currentlySorting}
+                            sleep={this.sleep}
                         />
 
                         <HeapSort
@@ -145,6 +165,7 @@ export class App extends Component {
                             delay={this.state.delay}
                             updateParameters={this.updateParameters}
                             currentlySorting={this.state.currentlySorting}
+                            sleep={this.sleep}
                         />
 
                         <QuickSort
@@ -159,6 +180,7 @@ export class App extends Component {
                             sortedIndices={this.state.sortedIndices}
                             updateSortedIndices={this.updateSortedIndices}
                             currentlySorting={this.state.currentlySorting}
+                            sleep={this.sleep}
                         />
                   </div>
               </div>
@@ -180,8 +202,12 @@ export class App extends Component {
 
               <footer id="settings" className="container page-footer settings d-flex flex-wrap" style={settingStyle}>
                         
-                    <button onClick={() => this.updateParameters(true, false)} disabled={!this.state.currentlySorting} 
-                    className={'btn btn-success btn-'+btnSize }>Skip Forward</button>
+
+              <button onClick={() => this.pause(this.state.delay)} disabled={!this.state.currentlySorting} 
+                    className={pauseColor}><i className={icon}></i></button>
+
+                    <button onClick={() => this.updateParameters(true, false)} disabled={!this.state.currentlySorting || this.state.paused} 
+                    className='btn btn-success'><i className="fas fa-fast-forward"></i></button>
 
                     <div className="m-auto">
                           <label>Speed</label>
@@ -191,10 +217,10 @@ export class App extends Component {
 
                     <div className="m-auto">
                           <label>Array Size</label>
-                          <input type="range" name="array-size" max={Math.floor(window.innerWidth/10)} min="5" onChange={this.updateArraySize} value={this.state.arr.size} disabled={this.state.currentlySorting}></input>
+                          <input type="range" name="array-size" max={Math.floor(window.innerWidth/10)} min="5" onChange={this.updateArraySize} value={this.state.arr.length} disabled={this.state.currentlySorting}></input>
                     </div>
-                    
 
+                
               </footer>
 
               </div>
