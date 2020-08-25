@@ -17,7 +17,7 @@ export class App extends Component {
 
     let arr = []
     for(let i = 0; i < n; i++)
-        arr.push(Math.floor(Math.random() * 99) + 1)
+        arr.push(Math.floor(Math.random() * 95) + 1)
     
     return arr
   }
